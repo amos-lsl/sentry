@@ -34,6 +34,8 @@ from sentry.utils.linksign import generate_signed_link
 
 from .activity import emails
 
+from six.moves.urllib.parse import urlencode
+
 NOTSET = object()
 
 logger = logging.getLogger(__name__)
@@ -202,6 +204,9 @@ class MailPlugin(NotificationPlugin):
         subject = event.get_email_subject()
 
         link = group.get_absolute_url()
+
+        if event.get_tag('environment'):
+            link += 'environment=' + urlencode(event.get_tag('environment'))
 
         template = 'sentry/emails/error.txt'
         html_template = 'sentry/emails/error.html'
