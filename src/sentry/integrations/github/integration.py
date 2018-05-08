@@ -55,7 +55,7 @@ class GitHubIntegration(Integration):
     def get_installation_info(self, access_token, installation_id):
         session = http.build_session()
         resp = session.get(
-            'https://api.github.com/app/installations/%s' % installation_id,
+            '%s/app/installations/%s' % installation_id,
             headers={
                 'Authorization': 'Bearer %s' % get_jwt(),
                 'Accept': 'application/vnd.github.machine-man-preview+json',
@@ -83,7 +83,8 @@ class GitHubIntegration(Integration):
         identity = state['identity']['data']
 
         user = get_user_info(identity['access_token'])
-        installation = self.get_installation_info(identity['access_token'], state['installation_id'])
+        installation = self.get_installation_info(
+            identity['access_token'], state['installation_id'])
 
         return {
             'name': installation['account']['login'],

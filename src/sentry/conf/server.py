@@ -1238,6 +1238,7 @@ SENTRY_USE_X_FORWARDED_FOR = True
 SENTRY_DEFAULT_INTEGRATIONS = (
     'sentry.integrations.slack.SlackIntegration',
     'sentry.integrations.github.GitHubIntegration',
+    'sentry.integrations.githubEnterprise.GitHubEnterpriseIntegration',
     'sentry.integrations.jira.JiraIntegration',
     'sentry.integrations.vsts.VSTSIntegration',
 )
