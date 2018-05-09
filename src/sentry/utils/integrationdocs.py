@@ -56,8 +56,10 @@ def dump_doc(path, data):
     directory = os.path.dirname(fn)
     try:
         os.makedirs(directory)
-    except OSError:
-        pass
+    except OSError as e:
+        print e
+        print directory
+        assert False
     with open(fn, 'wb') as f:
         json.dump(data, f, indent=2)
         f.write('\n')

@@ -102,7 +102,7 @@ update-submodules:
 
 build-platform-assets:
 	@echo "--> Building platform assets"
-	sentry init
+	sentry init || true
 	@echo "from sentry.utils.integrationdocs import sync_docs; sync_docs(quiet=True)" | sentry exec
 
 test: develop lint test-js test-python test-cli
